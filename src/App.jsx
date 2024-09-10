@@ -1,13 +1,11 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
 import { PostDetailsPage } from "./pages/PostDetailsPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import { PostProvider } from "./contexts/PostContext";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -18,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/posts/:id" element={<PostDetailsPage />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </PostProvider>
