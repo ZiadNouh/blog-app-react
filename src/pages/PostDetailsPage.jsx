@@ -8,7 +8,7 @@ export const PostDetailsPage = () => {
 
   useEffect(() => {
     fetchPost(id);
-  }, [id, fetchPost]);
+  }, [id]);
 
   if (!currentPost) {
     return (

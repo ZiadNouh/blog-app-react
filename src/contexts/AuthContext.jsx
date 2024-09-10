@@ -8,6 +8,13 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const api = axios.create({
+    baseURL: "https://blog-react-api-pied.vercel.app/",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -20,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/users/me");
+      const response = await api.get("/users/me");
       setUser(response.data);
       setIsLoggedIn(true);
     } catch (error) {
@@ -32,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:3001/login", {
+      const response = await api.post("/login", {
         email,
         password,
       });
@@ -50,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:3001/users", {
+      const response = await api.post("/users", {
         email,
         password,
       });
